@@ -416,11 +416,11 @@ public class Main {
             }
 
             else if (userInput == 8) {
-                mainLoop = false;
+                mainLoop = false; //Terminates main loop
             }
         }
 
-        System.out.println("Thank you so much for using the Music Library Manager (MLM)! We hope to see you again soon."); //Final message
+        System.out.println("Thank you so much for using the Music Library Manager (MLM)! We hope to see you again soon."); //Prints final message
         input.close();
     }
 
