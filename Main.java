@@ -20,6 +20,7 @@ public class Main {
         boolean mainLoop = true; //Establishes main loop to return to main menu after each time
 
         while (mainLoop) {
+            
             System.out.println("\n===Main Menu===\n1. Add a song\n2. Average rating of the library\n3. Highest and Lowest rated songs\n4. Display the list of songs\n5. Display the Rating Distribution\n6. Search a song\n7. Display the top and bottom 20%\n8. Exit the program\n\nWhat would you like to do? (Enter a number between 1-8): "); //Prints menu
             int userInput = Integer.parseInt(input.nextLine());
 
@@ -246,7 +247,7 @@ public class Main {
                     }
 
                     int tallest = fiveStarCounter; //Set tallest to any variable
-                    if (fourStarCounter > tallest) //Check if next counter is greater, if it is replace current tallest with that counter
+                    if (fourStarCounter > tallest) //Check if next counter is greater, if it is, replace current tallest with that counter
                         tallest = fourStarCounter;
                     if (threeStarCounter > tallest)
                         tallest = threeStarCounter;
@@ -257,7 +258,7 @@ public class Main {
 
                     for (int i = tallest; i >= 1; i--) { //Starting graph from greatest "row" and go down
                         String line = ""; //Empty string for each line
-                        for (int j = 0; j < 5; j++) { //Within each line, check each "column"" from left to right
+                        for (int j = 0; j < 5; j++) { //Within each line, check each "column" from left to right
 
                             if (j == 0 && fiveStarCounter >= i) { //If in first column, and counter >= i (bar is tall enough), draw #
                                 line += "  #  ";
@@ -270,10 +271,10 @@ public class Main {
                             } else if (j == 4 && oneStarCounter >= i) {
                                 line += "  #  ";
                             } else
-                                line += "     "; //Otherwise, if counter < i (aka bar not tall enough), enter a space
+                                line += "     "; //Otherwise, if counter < i (aka bar not tall enough to have a # in this row), enter a space
                         }
 
-                        System.out.println(line); //Print whole line at a time
+                        System.out.println(line); //Prints the whole row in one go
 
                     }
 
@@ -304,13 +305,17 @@ public class Main {
 
                     for (int i = 0; i < title.size(); i++) { //For loop to check if the ArrayList title contains the search
                         String current = title.get(i).toLowerCase();
+                        
                         if (current.contains(search)) {
                             System.out.println("\nThe song can be found at ID " + i + "\nTitle: " + title.get(i) + "\nArtist: " + artist.get(i) + "\nRating: " + rating.get(i));
                             foundCounter++;
-                            if (rating.get(i) > roundedRating) //Check if rating is above below or equal to rating of the library
+                            
+                            if (rating.get(i) > roundedRating) //Check if rating is above, below, or equal to the average rating of the library
                                 System.out.println("This song is above the library average rating of " + roundedRating);
+                            
                             else if (rating.get(i) < roundedRating)
                                 System.out.println("This song is below the library average rating of " + roundedRating);
+                            
                             else
                                 System.out.println("This song is equal to the library average rating of " + roundedRating);
                         }
@@ -318,13 +323,17 @@ public class Main {
 
                     for (int i = 0; i < artist.size(); i++) { //For loop to check if the ArrayList artist contains the search
                         String current = artist.get(i).toLowerCase();
+                        
                         if (current.contains(search)) {
                             System.out.println("\nThe artist can be found at song ID " + i + "\nTitle: " + title.get(i) + "\nArtist: " + artist.get(i) + "\nRating: " + rating.get(i));
                             foundCounter++;
-                            if (rating.get(i) > roundedRating) //Check if rating is above below or equal to rating of the library
+                            
+                            if (rating.get(i) > roundedRating) //Check if rating is above, below, or equal to the average rating of the library
                                 System.out.println("This song is above the library average rating of " + roundedRating);
+                            
                             else if (rating.get(i) < roundedRating)
                                 System.out.println("This song is below the library average rating of " + roundedRating);
+                            
                             else
                                 System.out.println("This song is equal to the library average rating of " + roundedRating);
                         }
@@ -341,19 +350,16 @@ public class Main {
                 System.out.println("Thank you for picking Option 7: Display the top 20%/bottom 20%");
 
                 ArrayList <String> sortTitle = new ArrayList<>(); //Initialize new ArrayList
-
                 for (int i = 0; i < title.size(); i++) { //Fill ArrayList by copying over from original title ArrayList
                     sortTitle.add(title.get(i));
                 }
 
                 ArrayList <String> sortArtist = new ArrayList<>(); //Initialize new ArrayList
-
                 for (int i = 0; i < artist.size(); i++) { //Fill ArrayList by copying over from original artist ArrayList
                     sortArtist.add(artist.get(i));
                 }
 
                 ArrayList <Integer> sortRating = new ArrayList<>(); //Initialize new ArrayList
-
                 for (int i = 0; i < rating.size(); i++) { //Fill ArrayList by copying over from original rating ArrayList
                     sortRating.add(rating.get(i));
                 }
